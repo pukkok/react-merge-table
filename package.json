@@ -1,0 +1,36 @@
+{
+  "name": "auto-merge-table",
+  "version": "1.0.0",
+  "description": "React component for auto-merging rowspan/colspan in HTML tables",
+  "author": "pukkok <krystalgggg@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": ["react", "table", "rowspan", "colspan", "merge", "component"],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsup src/index.ts --dts --format esm,cjs",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0 <20.0.0",
+    "react-dom": ">=18.0.0 <20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.4.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "tsup": "^7.2.0"
+  }
+}
