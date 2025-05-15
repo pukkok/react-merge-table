@@ -1,0 +1,1 @@
+export { AutoMergeTable } from '@/components/AutoMergeTable'
