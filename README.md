@@ -7,6 +7,14 @@
 
 ---
 
+## 🔍 Live Demo
+
+👉 [Try it now on GitHub Pages](https://pukkok.github.io/auto-merge-table/)
+
+This interactive playground lets you edit `headers` and `rows` live and see the results immediately — perfect for testing before installing.
+
+---
+
 ## ✨ Why I Built This
 
 Writing `<table>` markup in React is tedious when you need to:
@@ -91,19 +99,57 @@ const rows = [
 | `~`        | Merge with the cell to the left (→ colspan) |
 | `$$`, `~~` | Escape literal `$` or `~` values            |
 
-### 💡 Note on `$` and `~`
+---
 
-If a cell contains **exactly** `$` or `~`, it will be interpreted as a merge instruction:
+## 🎨 Styling with `defaultStyle`
 
-* `$` merges vertically (rowspan)
-* `~` merges horizontally (colspan)
+The component provides optional default styling for `<table>`, `<th>`, and `<td>` elements.
 
-If you want to **literally display** a `$` or `~` symbol in its own cell (without triggering a merge), you must escape it:
+By default, the style is enabled.
+You can disable it by passing `defaultStyle={false}` to any of the components:
 
-* Use `$$` to display `$`
-* Use `~~` to display `~`
+```tsx
+<AutoMergeTable defaultStyle={false}>
+  <TableHeader headers={headers} defaultStyle={false} />
+  <TableBody rows={rows} defaultStyle={false} />
+</AutoMergeTable>
+```
 
-In all other cases (e.g., a string like `Price is $100` or `Tilde ~ symbol`), no escaping is necessary — these values are automatically handled as regular strings.
+This gives you full control to apply your own CSS classes without interference.
+
+---
+
+## 📋 Example Snippets
+
+### 🇺🇸 English Example
+
+```tsx
+const headers = ['Grade', 'Subject', 'Exam', 'Date', 'Period', 'Score']
+
+const rows = [
+  ['Grade 1', 'Math', 'Midterm', 'April 10', 'Period 1', 95],
+  ['$', 'Korean', 'Midterm', ['April 11', 'April 12'], 'Period 2', 87],
+  ['$', 'English', 'Final', 'June 15', 'Period 1', 91],
+  ['Grade 2', 'Math', 'Midterm', 'April 12', 'Period 1', 80],
+  ['$', 'Korean', '~', 'April 13', 'Period 2', 85],
+  ['$', 'English', '~', 'April 14', 'Period 3', 89]
+]
+```
+
+### 🇰🇷 Korean Example
+
+```tsx
+const headers = ['학년', '과목', '시험명', '일정', '시간', '점수']
+
+const rows = [
+  ['1학년', '수학', '중간고사', '4월 10일', '1교시', 95],
+  ['$', '국어', '중간고사', ['4월 11일', '4월 12일'], '2교시', 87],
+  ['$', '영어', '기말고사', '6월 15일', '1교시', 91],
+  ['2학년', '수학', '중간고사', '4월 12일', '1교시', 80],
+  ['$', '국어', '~', '4월 13일', '2교시', 85],
+  ['$', '영어', '~', '4월 14일', '3교시', 89]
+]
+```
 
 ---
 
@@ -137,12 +183,6 @@ yarn add auto-merge-table
 
 ---
 
-## 📃 License
-
-MIT
-
----
-
 ## 📊 Run the Example
 
 This project includes complete example apps (English and Korean) under the `examples/` folder.
@@ -163,10 +203,9 @@ npm install
 npm run dev
 ```
 
-> This will start a local dev server using Vite at `http://localhost:5174`
+> This will start a local dev server using Vite at `http://localhost:5173`
 
-By default, it loads the English demo (`App.en.tsx`).
-To test the Korean version, just change this line in `examples/main.tsx`:
+To test the Korean version, change this line in `examples/main.tsx`:
 
 ```tsx
 import App from './App.ko'
@@ -212,6 +251,23 @@ import App from './App.ko'
 * `~~` → `~` 출력
 
 그 외의 경우 (`$100`, `~100`, `가격 ~ 10% 할인` 등)는 자동으로 일반 문자열로 인식되므로 **추가적인 조치가 필요 없습니다.**
+
+### 🎨 스타일 설정 (`defaultStyle`)
+
+Auto Merge Table은 기본적으로 `<table>`, `<th>`, `<td>` 요소에 약간의 기본 스타일을 적용합니다. 하지만 이 스타일은 선택적으로 비활성화할 수 있습니다.
+
+기본 스타일을 제거하고 직접 CSS를 적용하려면 `defaultStyle={false}`를 각 컴포넌트에 전달하세요:
+
+```tsx
+<AutoMergeTable defaultStyle={false}>
+  <TableHeader headers={headers} defaultStyle={false} />
+  <TableBody rows={rows} defaultStyle={false} />
+</AutoMergeTable>
+```
+
+기본 스타일을 껐을 경우, `example.css` 또는 사용자 정의 스타일로 원하는 테이블 디자인을 자유롭게 설정할 수 있습니다.
+
+---
 
 ### 🛠 예제 실행
 
