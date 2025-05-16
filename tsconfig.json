@@ -11,9 +11,6 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "strict": true,
-    "declaration": true,
-    "declarationDir": "dist",
-    "outDir": "dist",
     "types": ["node"]
   },
   "include": ["src", "vite.config.ts", "examples"]

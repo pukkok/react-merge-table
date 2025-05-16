@@ -10,7 +10,11 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   plugins: [
     react(),
-    dts({ insertTypesEntry: true })
+    dts({
+      insertTypesEntry: true,
+      exclude: ['examples', 'src/**/*.d.ts'],
+      rollupTypes: true
+    })
   ],
   build: {
     lib: {
@@ -28,6 +32,6 @@ export default defineConfig({
         }
       }
     },
-    cssCodeSplit: false // CSS를 JS로 함께 묶음
+    cssCodeSplit: false
   }
 });
