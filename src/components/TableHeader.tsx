@@ -1,24 +1,16 @@
 import React from 'react'
+import styles from '../styles/table.module.css'
 
 type Props = {
   headers: string[]
-}
+} & React.HTMLAttributes<HTMLTableSectionElement>
 
-export const TableHeader = ({ headers }: Props) => {
+export const TableHeader = ({ headers, className, ...rest }: Props) => {
   return (
-    <thead>
+    <thead className={className} {...rest}>
       <tr>
         {headers.map((text, idx) => (
-          <th
-            key={idx}
-            style={{
-              border: '1px solid #ccc',
-              backgroundColor: '#f9f9f9',
-              padding: '8px',
-              textAlign: 'center',
-              fontWeight: 'bold'
-            }}
-          >
+          <th key={idx} className={styles.th}>
             {text}
           </th>
         ))}
