@@ -1,5 +1,5 @@
 type Props = {
-  headers: string[]
+  headers: (string | number)[]
   defaultStyle?: boolean
 } & React.HTMLAttributes<HTMLTableSectionElement>
 
