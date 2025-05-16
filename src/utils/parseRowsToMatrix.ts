@@ -19,13 +19,15 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
       const value = interpretValue(raw)
 
       if (raw === MERGE_DOWN || raw === MERGE_RIGHT) {
-        grid[y][x] = null // 병합 대상: 렌더하지 않음
+        grid[y][x] = null
       } else {
         grid[y][x] = {
           value,
           rowspan: 1,
           colspan: 1,
-          render: true
+          render: true,
+          colIndex: x,
+          rowIndex: y
         }
       }
     }
@@ -36,7 +38,7 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
       const cell = grid[y][x]
       if (!cell || !cell.render) continue
 
-      // 아래 방향 병합
+      // 병합 ↓
       let r = y + 1
       while (r < height && rows[r]?.[x] === MERGE_DOWN) {
         cell.rowspan += 1
@@ -44,7 +46,7 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
         r++
       }
 
-      // 오른쪽 방향 병합
+      // 병합 →
       let c = x + 1
       while (c < width && rows[y]?.[c] === MERGE_RIGHT) {
         cell.colspan += 1
@@ -54,7 +56,9 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
     }
   }
 
-  return grid.map(row => row.filter(cell => cell !== null && cell.render !== false) as Cell[])
+  return grid.map(row =>
+    row.filter(cell => cell !== null && cell.render !== false) as Cell[]
+  )
 }
 
 function interpretValue(raw: string): string {
