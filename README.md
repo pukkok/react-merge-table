@@ -48,8 +48,8 @@ const rows = [
   ['$', 'English', '~', 'April 14', 'Period 3', 89]
 ]
 
-<AutoMergeTable>
-  <TableHeader headers={headers} />
+<AutoMergeTable defaultStyle={false}>
+  <TableHeader headers={headers} defaultStyle={false} />
   <TableBody
     rows={rows}
     columnRenderers={{
