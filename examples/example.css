@@ -1,27 +1,153 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
 .example-header th {
-  background-color: antiquewhite;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+.example-body td {
+  border: 1px solid #555;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .example-body p {
-  color: blue
+  color: #c3d9ff;
 }
 
 .example-body .example-button {
   background-color: #ffbb00;
-  border: none; 
+  border: none;
   padding: 4px 8px;
   border-radius: 6px;
   cursor: pointer;
+  color: #222;
+  font-weight: bold;
 }
 
-.example-body .example-button:hover{
+.example-body .example-button:hover {
   background-color: #eeb10b;
 }
 
 .example-body .col-2 {
-  background-color: red;
+  background-color: #ff4444;
 }
 
 .example-body .col-2 p {
   color: white;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 560px;
+  padding: 24px;
+  background-color: #2b2b2b;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h3 {
+  color: #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.sidebar textarea {
+  width: 100%;
+  min-height: 160px;
+  font-family: monospace;
+  padding: 8px;
+  background-color: #1e1e1e;
+  color: #eee;
+  border: 1px solid #444;
+  font-size: 16px;
+  border-radius: 4px;
+  resize: vertical;
+  line-height: 200%;
+}
+
+.sidebar .button-box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sidebar .button-box button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #007acc;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar .button-box button:hover {
+  background-color: #005fa3;
+}
+
+.sidebar p {
+  color: #ff6b6b;
+}
+
+/* Guide (사용법 안내) */
+.guide {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  border-radius: 6px;
+}
+
+.guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guide-header h2 {
+  margin: 0;
+  color: #f0f0f0;
+}
+
+.guide-toggle-button {
+  background-color: #444;
+  color: #eee;
+  border: 1px solid #666;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.guide-toggle-button:hover {
+  background-color: #555;
+}
+
+.guide-instructions {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-family: monospace;
+  font-size: 14px;
+  color: #eee;
+  margin-top: 12px;
 }
