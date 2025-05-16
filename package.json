@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsup src/index.ts --dts --format esm,cjs",
     "preview": "vite preview"
   },
   "peerDependencies": {
@@ -46,7 +46,6 @@
     "@vitejs/plugin-react": "^4.4.1",
     "tsup": "^7.2.0",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5",
-    "vite-plugin-dts": "^4.5.4"
+    "vite": "^6.3.5"
   }
 }
