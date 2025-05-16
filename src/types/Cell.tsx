@@ -1,6 +1,8 @@
 export interface Cell {
-  value: string
+  value: string | string[]
   rowspan: number
   colspan: number
   render: boolean
+  colIndex: number
+  rowIndex: number
 }
