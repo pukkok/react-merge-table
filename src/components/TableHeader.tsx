@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from '../styles/table.module.css'
 
 type Props = {
   headers: string[]
@@ -10,7 +9,7 @@ export const TableHeader = ({ headers, ...rest }: Props) => {
     <thead {...rest}>
       <tr>
         {headers.map((text, idx) => (
-          <th key={idx} className={styles.th}>
+          <th key={idx}>
             {text}
           </th>
         ))}

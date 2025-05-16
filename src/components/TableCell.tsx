@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from '../styles/table.module.css'
 import { Cell } from '../types/Cell'
 
 type Props = {
@@ -14,14 +13,12 @@ export const TableCell = ({
   rowIndex, // 구조 분해로 제거 (DOM에 전달 안 됨)
   colIndex, // 구조 분해로 제거 
   columnRenderers,
-  className,
   ...rest
 }: Props) => {
   const custom = columnRenderers?.[cell?.colIndex]
 
   return (
     <td
-      className={`${styles.td} ${className ?? ''}`}
       rowSpan={cell.rowspan}
       colSpan={cell.colspan}
       {...rest}

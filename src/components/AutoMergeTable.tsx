@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/table.module.css'
+import '../styles/table.module.css'
 
 type Props = {
   children: React.ReactNode
@@ -8,7 +8,7 @@ type Props = {
 
 export const AutoMergeTable = ({ children, className, ...rest }: Props) => {
   return (
-    <table className={`${styles.table} ${className ?? ''}`} {...rest}>
+    <table className={`table ${className ?? ''}`} {...rest}>
       {children}
     </table>
   )
