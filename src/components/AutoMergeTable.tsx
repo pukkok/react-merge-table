@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styles/table.css'
 
 type Props = {
   children: React.ReactNode
