@@ -33,7 +33,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsup src/index.ts --dts --format esm,cjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:demo": "vite build --config vite.config.ts"
   },
   "peerDependencies": {
     "react": ">=18.0.0 <20.0.0",
