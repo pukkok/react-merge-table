@@ -1,3 +1,5 @@
+import './index.css';
+
 export { AutoMergeTable } from './components/AutoMergeTable'
 export { TableHeader } from './components/TableHeader'
 export { TableBody } from './components/TableBody'
