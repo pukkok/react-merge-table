@@ -1,6 +1,6 @@
 {
   "name": "auto-merge-table",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React component for auto-merging rowspan/colspan in HTML tables",
   "author": "pukkok <krystalgggg@gmail.com>",
   "license": "MIT",
