@@ -17,7 +17,7 @@ const rows = [
 export default function App() {
   return (
     <div className='example'>
-      <h1>🧩 Auto Merge Table Example</h1>
+      <h1>🧩 자동 테이블 병합 예시(한글)</h1>
 
       <AutoMergeTable>
         <TableHeader className='example-header' headers={headers} />
