@@ -1,18 +1,25 @@
 import React from 'react'
-import { Cell } from '@/types/Cell'
-import { TableCell } from '@/components/TableCell'
+import { Cell } from '../types/Cell'
+import { TableCell } from './TableCell'
 
 type Props = {
   row: Cell[]
-  onCellClick?: (value: string) => void
-}
+  rowIndex: number
+  columnRenderers?: Record<number, (cell: Cell) => React.ReactNode>
+} & React.HTMLAttributes<HTMLTableRowElement>
 
-export const TableRow = ({ row, onCellClick }: Props) => {
+export const TableRow = ({ row, rowIndex, columnRenderers, ...rest }: Props) => {
   return (
-    <tr>
-      {row.map((cell, idx) =>
+    <tr {...rest}>
+      {row.map((cell, colIndex) =>
         cell.render ? (
-          <TableCell key={idx} cell={cell} onClick={onCellClick} />
+          <TableCell
+            key={colIndex}
+            cell={cell}
+            rowIndex={rowIndex}
+            colIndex={colIndex}
+            columnRenderers={columnRenderers}
+          />
         ) : null
       )}
     </tr>
