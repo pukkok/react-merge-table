@@ -5,7 +5,7 @@ const MERGE_RIGHT = '~'
 const ESCAPE_DOLLAR = '$$'
 const ESCAPE_TILDE = '~~'
 
-export function parseRowsToMatrix(rows: string[][]): Cell[][] {
+export function parseRowsToMatrix(rows: (string | number | (string | number)[])[][]): Cell[][] {
   const height = rows.length
   const width = Math.max(...rows.map(row => row.length))
 
@@ -16,7 +16,7 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const raw = rows[y]?.[x] ?? ''
-      const value = interpretValue(raw)
+      const value = Array.isArray(raw) ? raw : interpretValue(raw)
 
       if (raw === MERGE_DOWN || raw === MERGE_RIGHT) {
         grid[y][x] = null
@@ -61,8 +61,10 @@ export function parseRowsToMatrix(rows: string[][]): Cell[][] {
   )
 }
 
-function interpretValue(raw: string): string {
-  if (raw === ESCAPE_DOLLAR) return '$'
-  if (raw === ESCAPE_TILDE) return '~'
+function interpretValue(raw: string | number): string | number {
+  if (typeof raw === 'string') {
+    if (raw === ESCAPE_DOLLAR) return '$'
+    if (raw === ESCAPE_TILDE) return '~'
+  }
   return raw
 }
