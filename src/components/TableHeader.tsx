@@ -5,9 +5,9 @@ type Props = {
   headers: string[]
 } & React.HTMLAttributes<HTMLTableSectionElement>
 
-export const TableHeader = ({ headers, className, ...rest }: Props) => {
+export const TableHeader = ({ headers, ...rest }: Props) => {
   return (
-    <thead className={className} {...rest}>
+    <thead {...rest}>
       <tr>
         {headers.map((text, idx) => (
           <th key={idx} className={styles.th}>
