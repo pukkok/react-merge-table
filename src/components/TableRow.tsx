@@ -6,7 +6,7 @@ type Props = {
   row: Cell[]
   rowIndex: number
   columnRenderers?: Record<number, (cell: Cell) => React.ReactNode>
-  defaultStyle: boolean
+  defaultStyle?: boolean
 } & React.HTMLAttributes<HTMLTableRowElement>
 
 export const TableRow = ({ row, rowIndex, columnRenderers, defaultStyle = true, ...rest }: Props) => {

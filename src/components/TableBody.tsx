@@ -6,7 +6,7 @@ import { parseRowsToMatrix } from '../utils/parseRowsToMatrix'
 type Props = {
   rows: (string | number | (string | number)[])[][]
   columnRenderers?: Record<number, (cell: Cell) => React.ReactNode>
-  defaultStyle: boolean
+  defaultStyle?: boolean
 } & React.HTMLAttributes<HTMLTableSectionElement>
 
 export const TableBody = ({ rows, columnRenderers, defaultStyle = true, ...rest }: Props) => {

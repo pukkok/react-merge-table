@@ -5,7 +5,7 @@ type Props = {
   cell: Cell
   rowIndex?: number // 내부에서만 사용, DOM으로 전달되지 않게
   colIndex?: number // 내부에서만 사용
-  defaultStyle: boolean
+  defaultStyle?: boolean
   columnRenderers?: Record<number, (cell: Cell) => React.ReactNode>
 } & React.TdHTMLAttributes<HTMLTableCellElement>
 
