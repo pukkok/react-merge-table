@@ -1,6 +1,6 @@
 {
   "name": "auto-merge-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React component for auto-merging rowspan/colspan in HTML tables",
   "author": "pukkok <krystalgggg@gmail.com>",
   "license": "MIT",
@@ -8,7 +8,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist", "src/styles/table.module.css"
+    "dist",
+    "src/styles/table.module.css"
   ],
   "exports": {
     ".": {
