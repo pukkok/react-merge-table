@@ -1,4 +1,4 @@
-# 🎩 Auto Merge Table
+# 🧩 Auto Merge Table
 
 **Auto Merge Table** is a lightweight React component that makes it easy to build `<table>`s with automatic cell merging.
 
@@ -91,21 +91,35 @@ const rows = [
 | `~`        | Merge with the cell to the left (→ colspan) |
 | `$$`, `~~` | Escape literal `$` or `~` values            |
 
+### 💡 Note on `$` and `~`
+
+If a cell contains **exactly** `$` or `~`, it will be interpreted as a merge instruction:
+
+* `$` merges vertically (rowspan)
+* `~` merges horizontally (colspan)
+
+If you want to **literally display** a `$` or `~` symbol in its own cell (without triggering a merge), you must escape it:
+
+* Use `$$` to display `$`
+* Use `~~` to display `~`
+
+In all other cases (e.g., a string like `Price is $100` or `Tilde ~ symbol`), no escaping is necessary — these values are automatically handled as regular strings.
+
 ---
 
-## 🗁 Project Structure
+## 📁 Project Structure
 
 ```
 /src           → core component code
 /examples      → demo apps
-  ├— App.en.tsx  ← default demo (English)
-  ├— App.ko.tsx  ← Korean demo
-  └— main.tsx    ← demo entry
+  ├── App.en.tsx  ← default demo (English)
+  ├── App.ko.tsx  ← Korean demo
+  └── main.tsx    ← demo entry
 ```
 
 ---
 
-## 🌐 International Users
+## 🌍 International Users
 
 This project defaults to English examples.
 
@@ -133,7 +147,7 @@ MIT
 
 This project includes complete example apps (English and Korean) under the `examples/` folder.
 
-### 📂 Example Files
+### 📁 Example Files
 
 | File                   | Description                      |
 | ---------------------- | -------------------------------- |
@@ -143,8 +157,6 @@ This project includes complete example apps (English and Korean) under the `exam
 | `examples/example.css` | Custom styling for demo          |
 
 ### 🚀 Run the dev server
-
-If you're using this repo directly:
 
 ```bash
 npm install
@@ -157,111 +169,62 @@ By default, it loads the English demo (`App.en.tsx`).
 To test the Korean version, just change this line in `examples/main.tsx`:
 
 ```tsx
-// Before:
-import App from './App.en'
-
-// To use Korean version:
 import App from './App.ko'
 ```
 
 ---
 
-## 🇰🇷 Auto Merge Table (한국어 안내)
+## 🇰🇷 한국어 안내
 
-**Auto Merge Table**은 React에서 `<table>`을 더 쉽게 만들고, 자동 병합 기능을 지원하는 컨폰마트입니다.
+**Auto Merge Table**은 React에서 `<table>`을 쉽게 만들고, 자동 병합 기능을 지원하는 컴포넌트입니다.
 
 `rowspan`, `colspan` 같은 셀 병합 처리를 자동으로 해주기 때문에,
-보통의 `<td>` 구조를 신경 쓰지 않고도 간단하게 테이블을 만들 수 있습니다.
+복잡한 `<td>` 구조를 신경 쓰지 않고도 간단하게 테이블을 만들 수 있습니다.
 
----
-
-## ✨ 만들게 된 의도
-
-<table> 태그를 React에서 쓰기 힘들어지는 이유:
+### ✨ 만든 의도
 
 * `rowspan`, `colspan`을 직접 계산하고 작성해야 함
-* JSX가 다루지고 견도성이 상당히 낮음
-* 버튼, 인프트, 커스텀 요소 렌더링이 기다리다는 문제
+* JSX가 다루기 어렵고 가독성이 낮음
+* 커스텀 렌더링이 복잡해짐
 
-이 컨폰마트는 다음을 지원합니다:
+→ 이 컴포넌트는 `$`, `~` 기호로 병합을 간단히 표현하고, 커스텀 렌더링도 손쉽게 할 수 있도록 설계되었습니다.
 
-* `$` → 위의 셀과 자동 병합
-* `~` → 왼쪽 셀과 자동 병합
-* `$$`, `~~` → 병합 기호 출력
-* column 단위 렌더링 커스터링
-* 타입 안정성, 유연한 스타일링
+### 🚀 빠른 사용법
 
----
+자세한 예제는 [`examples/App.ko.tsx`](./examples/App.ko.tsx)를 참고하세요.
 
-## 🚀 빠른 사용법
+### 🧠 병합 기호
 
-예제 사용 방식은 위의 영어 포함 포트를 참고해주세요.
-examples/App.en.tsx -> examples/App.ko.tsx
+| 기호         | 의미       |
+| ---------- | -------- |
+| `$`        | 위 셀과 병합  |
+| `~`        | 왼쪽 셀과 병합 |
+| `$$`, `~~` | 기호 자체 출력 |
 
----
+💡 셀의 값이 정확히 `$` 또는 `~`인 경우에만 병합 명령으로 해석됩니다.
 
-## 🧠 병합 문법
+* `$`는 위쪽 셀과 병합 (rowspan)
+* `~`는 왼쪽 셀과 병합 (colspan)
 
-| 기호         | 의미                |
-| ---------- | ----------------- |
-| `$`        | 위 셀과 병합           |
-| `~`        | 왼쪽 셀과 병합          |
-| `$$`, `~~` | `$`, `~` 기호 자체 출력 |
+만약 `$` 또는 `~` 기호 자체를 **단독으로 표시**하고 싶다면 반드시 escape 문자를 사용해야 합니다:
 
----
+* `$$` → `$` 출력
+* `~~` → `~` 출력
 
-## 📂 폴더 구조
+그 외의 경우 (`$100`, `~100`, `가격 ~ 10% 할인` 등)는 자동으로 일반 문자열로 인식되므로 **추가적인 조치가 필요 없습니다.**
 
-```
-/src           → 라이브러리 해상 컨폰마트 코드
-/examples      → 데모 예제
-  ├— App.en.tsx  ← 기본 예제 (English)
-  ├— App.ko.tsx  ← 한국어 예제
-  └— main.tsx    ← 시험 진입건
-```
-
----
-
-## 📦 설치 방법 (coming soon)
-
-```bash
-npm install auto-merge-table
-# 또는
-yarn add auto-merge-table
-```
-
----
-
-## 💪 예제 실행 안내
-
-이 프로젝트는 `examples/` 폴더에서 가장 완료된 예제 파일(App.en / App.ko)을 포함합니다.
-
-### 포트 파일 구조
-
-| 파일                     | 설명                    |
-| ---------------------- | --------------------- |
-| `examples/App.en.tsx`  | 영어 기본 예제              |
-| `examples/App.ko.tsx`  | 한국어 예제                |
-| `examples/main.tsx`    | React 시작 패스 (Vite 이용) |
-| `examples/example.css` | 테이블 스타일 설정            |
-
-### 연동환경 시작
+### 🛠 예제 실행
 
 ```bash
 npm install
 npm run dev
 ```
 
-> Vite 시바스 로컬 서버가 `http://localhost:5174` 에서 시작됩니다.
-
-기본적으로 영어 예제(`App.en.tsx`)가 로드됩니다.
-`examples/main.tsx`의 import 값을 `en` -> `ko`와 같이 변경하여 한국어 버전을 사용해 보세요.
+`examples/main.tsx`에서 `App.ko.tsx`를 불러오면 한국어 예제를 실행할 수 있습니다:
 
 ```tsx
 import App from './App.ko'
 ```
-
-무료로 사용가능하고 전 기능은 App.ko.tsx에서도 동일히 다루고 있습니다.
 
 ---
 
