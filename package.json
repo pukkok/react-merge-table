@@ -15,7 +15,12 @@
     }
   },
   "sideEffect" : false,
-  "keywords": ["react", "table", "rowspan", "colspan", "merge", "component"],
+  "keywords": [
+    "react", "table", "react-table",
+    "rowspan", "colspan",
+    "cell merging", "auto merge", "merge table",
+    "spreadsheet", "component", "data table"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsup src/index.ts --dts --format esm,cjs",
