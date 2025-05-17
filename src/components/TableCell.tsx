@@ -46,9 +46,9 @@ function renderContent(value: KeyedValue | KeyedValue[]) {
     return (
       <div>
         {value.map(v => (
-          <span key={v.key}>
+          <p key={v.key}>
             {v.label}
-          </span>
+          </p>
         ))}
       </div>
     )
