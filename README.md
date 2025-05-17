@@ -1,4 +1,4 @@
-> 🇰🇷 This README is also available in Korean: [README.ko.md](https://github.com/pukkok/react-merge-table/blob/main/README.ko.md)
+> 🇰🇷 한글판 설명 바로가기: [README.ko.md](https://github.com/pukkok/react-merge-table/blob/main/README.ko.md)
 
 # 🧩 React Merge Table
 
