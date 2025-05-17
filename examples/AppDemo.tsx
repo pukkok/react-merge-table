@@ -17,7 +17,7 @@ export default function AppDemo() {
   ]
 
   const [headers, setHeaders] = useState<(string | number)[]>(defaultHeaders)
-  const [rows, setRows] = useState<(string | number | (string | number)[])[][]>(defaultRows)
+  const [rows, setRows] = useState<(any[])>(defaultRows)
 
   return (
     <div className="container">
