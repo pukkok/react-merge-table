@@ -1,15 +1,39 @@
 import React from 'react'
-import { AutoMergeTable, TableHeader, TableBody, Cell } from '@/index'
+import { MergeTable, TableHeader, TableBody, Cell } from '@/index'
 import './example.css'
 
-const headers = ['Grade', 'Subject', 'Exam', 'Date', 'Period', 'Score']
+const headers = [
+  { key: 'grade', label: 'Grade' },
+  'Subject',
+  { key: 'exam-type', label: 'Exam' },
+  'Date',
+  'Period',
+  'Score'
+]
 
 const rows = [
-  ['Grade 1', 'Math', 'Midterm', 'April 10', 'Period 1', 95],
-  ['$', 'Korean', 'Midterm', ['April 11', 'April 12'], 'Period 2', 87],
+  {
+    key: 'grade-1-math',
+    data: [
+      { key: 'grade-1', label: 'Grade 1' },
+      'Math',
+      { key: 'exam-mid', label: 'Midterm' },
+      'April 10',
+      'Period 1',
+      95
+    ]
+  },
+  ['$', { key: 'subject-kor', label: 'Korean' }, 'Midterm', ['April 11', 'April 12'], 'Period 2', 87],
   ['$', 'English', 'Final', 'June 15', 'Period 1', 91],
-  ['Grade 2', 'Math', 'Midterm', 'April 12', 'Period 1', 80],
-  ['$', 'Korean', '~', 'April 13', 'Period 2', 85],
+  [
+    'Grade 2',
+    'Math',
+    { key: 'exam-mid-2', label: 'Midterm' },
+    'April 12',
+    'Period 1',
+    80
+  ],
+  ['$', 'Korean', '~', [{ key: 'date-1', label: 'April 13' }, { key: 'date-2', label: 'April 14' }], 'Period 2', 85],
   ['$', 'English', '~', 'April 14', 'Period 3', 89]
 ]
 
@@ -18,63 +42,45 @@ export default function App() {
     <div className="example">
       <h1>🧩 Auto Merge Table Example (English)</h1>
 
-      <AutoMergeTable>
+      <MergeTable>
         <TableHeader className="example-header" headers={headers} />
 
         <TableBody
           className="example-body"
           rows={rows}
           columnRenderers={{
-            // Grade column
-            0: (cell: Cell) => <strong>{cell.value}</strong>,
+            0: (cell: Cell) => <strong>{cell.content.label}</strong>,
 
-            // Subject column: turn into input on row 2
             1: (cell: Cell) =>
-              cell.rowIndex === 2 &&
-              (typeof cell.value === 'string' || typeof cell.value === 'number') ? (
-                <input type="text" defaultValue={cell.value} />
-              ) : (
-                <p>{cell.value}</p>
-              ),
+              cell.rowIndex === 2
+                ? <input type="text" defaultValue={String(cell.content.label)} />
+                : <p>{cell.content.label}</p>,
 
-            // Exam column: with background styling
-            2: (cell: Cell) => (
-              <div className="col-2">
-                <p>{cell.value}</p>
-              </div>
-            ),
+            2: (cell: Cell) => <div className="col-2"><p>{cell.content.label}</p></div>,
 
-            // Date column: render array as buttons
             3: (cell: Cell) =>
-              Array.isArray(cell.value) ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '4px',
-                    justifyContent: 'center'
-                  }}
-                >
-                  {cell.value.map((v, i) => (
-                    <button
-                      key={i}
-                      className="example-button"
-                      onClick={() => alert(v)}
-                    >
-                      {v}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <em>{cell.value}</em>
-              ),
+              cell.hasMultiple
+                ? (
+                  <div style={{ display: 'flex', gap: '4px', justifyContent: 'center' }}>
+                    {cell.contents.map((v) => (
+                      <button
+                        key={v.key}
+                        className="example-button"
+                        onClick={() => alert(v.label)}
+                      >
+                        {v.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <em>{cell.content.label}</em>
+                ),
 
-            // Score column: emphasize number
-            5: (cell: Cell) => (
-              <span style={{ fontWeight: 600 }}>{cell.value} pts</span>
-            )
+            5: (cell: Cell) =>
+              <span style={{ fontWeight: 600 }}>{cell.content.label} pts</span>
           }}
         />
-      </AutoMergeTable>
+      </MergeTable>
     </div>
   )
 }
