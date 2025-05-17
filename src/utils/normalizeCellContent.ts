@@ -49,9 +49,10 @@ function interpretLabel(label: string | number): string | number {
 }
 
 /**
- * 다양한 셀 입력값을 KeyedValue 또는 KeyedValue[] 형식으로 표준화합니다.
+ * 다양한 셀 입력값을 KeyedValue[] 형식으로 표준화합니다.
+ * 항상 배열을 반환합니다.
  */
-export function normalizeCellContent(input: any): KeyedValue | KeyedValue[] {
+export function normalizeCellContent(input: any): KeyedValue[] {
   //INFO: 배열인 경우
   if (Array.isArray(input)) {
     //INFO: 이미 KeyedValue[] 타입이면 label만 해석해서 반환
@@ -66,14 +67,14 @@ export function normalizeCellContent(input: any): KeyedValue | KeyedValue[] {
     }
   }
 
-  //INFO: 단일 KeyedValue 객체인 경우 label만 해석해서 반환
+  //INFO: 단일 KeyedValue 객체인 경우 label만 해석해서 배열로 감싸 반환
   if (isKeyedValue(input)) {
-    return {
+    return [{
       key: input.key,
       label: interpretLabel(input.label)
-    }
+    }]
   }
 
-  //INFO: 나머지는 새 KeyedValue로 변환
-  return toKeyed(interpretLabel(input))
+  //INFO: 나머지는 새 KeyedValue로 변환하여 배열로 감싸 반환
+  return [toKeyed(interpretLabel(input))]
 }
