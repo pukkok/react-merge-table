@@ -10,7 +10,6 @@ type Props = {
 export const TableHeader = ({ headers, defaultStyle = true, style, ...rest }: Props) => {
   const thStyle = {
     border: '1px solid #ccc',
-    backgroundColor: '#f9f9f9',
     padding: '8px',
     textAlign: 'center',
     fontWeight: 'bold',
