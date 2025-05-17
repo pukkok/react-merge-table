@@ -1,5 +1,5 @@
 import React from 'react'
-import { Cell } from '../types/Cell'
+import { Cell, KeyedValue } from '../types/Cell'
 
 type Props = {
   cell: Cell
@@ -25,11 +25,9 @@ export const TableCell = ({
     padding: '8px',
     textAlign: 'center',
     verticalAlign: 'middle',
-  } satisfies React.CSSProperties;
+  } satisfies React.CSSProperties
 
-  const mergedStyle = defaultStyle
-    ? { ...tdStyle, ...style }
-    : style;
+  const mergedStyle = defaultStyle ? { ...tdStyle, ...style } : style
 
   return (
     <td
@@ -38,13 +36,23 @@ export const TableCell = ({
       style={mergedStyle}
       {...rest}
     >
-      {custom ? custom(cell) : defaultRender(cell)}
+      {custom ? custom(cell) : renderContent(cell.content)}
     </td>
   )
 }
 
-function defaultRender(cell: Cell) {
-  return Array.isArray(cell.value)
-    ? cell.value.map((v, i) => <div key={i}>{v}</div>)
-    : cell.value
+function renderContent(value: KeyedValue | KeyedValue[]) {
+  if (Array.isArray(value)) {
+    return (
+      <div>
+        {value.map(v => (
+          <span key={v.key}>
+            {v.label}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  return <span>{value.label}</span>
 }
