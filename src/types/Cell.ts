@@ -5,7 +5,8 @@ export type KeyedValue = {
 
 export type Cell = {
   value: unknown
-  content: KeyedValue | KeyedValue[]
+  content: KeyedValue
+  contents: KeyedValue[]
   rowspan: number
   colspan: number
   render: boolean
