@@ -2,6 +2,8 @@
 
 # 🧩 React Merge Table
 
+> 📦 This package was formerly published as auto-merge-table. Please use react-merge-table going forward.
+
 **React Merge Table** is a lightweight React component that helps you build semantic `<table>`s in React with automatic cell merging.
 
 > Tired of managing `rowspan`, `colspan`, and conditional `<td>` rendering? Just provide structured data—this component takes care of the merging.
