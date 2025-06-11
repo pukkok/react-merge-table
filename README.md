@@ -92,6 +92,26 @@ export default function App() {
 
 ---
 
+### Custom `<td>` or `<th>` rendering (v.1.1.0)
+
+By default, **React Merge Table** wraps all cells in a `<td>` element for consistent rendering.
+
+However, if your `columnRenderers` return a custom `<td>` or `<th>` directly, the component will use it as-is and **not wrap it again**.
+
+```tsx
+columnRenderers={{
+  0: (cell) => <th style={{ background: '#f0f0f0' }}>{cell.content.label}</th>,
+  1: (cell) => <td style={{ color: 'red' }}>{cell.content.label}</td>,
+  2: (cell) => <strong>{cell.content.label}</strong> // ← automatically wrapped with <td>
+}}
+```
+
+> 💡 If your renderer returns plain elements (like `<p>`, `<span>`, or raw text), they will be automatically wrapped with a `<td>`.
+
+This gives you full control over the markup while keeping sensible defaults for simpler use cases.
+
+---
+
 ## 🧠 Merge Syntax
 
 | Symbol     | Meaning                                     |
@@ -210,3 +230,9 @@ To migrate:
 npm uninstall auto-merge-table
 npm install react-merge-table
 ```
+
+---
+
+## 📄 Changelog
+
+See [CHANGELOG.md](https://github.com/pukkok/react-merge-table/blob/main/CHANGELOG.md) for version history and release notes.
