@@ -1,6 +1,16 @@
 # Changelog
 
-## [1.1.1] - 2025-06-11
+## \[1.1.2] - 2025-06-11
+
+### Changed
+
+* 🧼 Removed `defaultStyle` prop from `<MergeTable>`. It now always applies `border-collapse: collapse` and `width: 100%`.
+* 📝 Updated README to clarify that `<MergeTable>` is a thin wrapper over `<table>`.
+* 📝 Documented that `<TableHeader>` and `<TableBody>` still support `defaultStyle={false}` for styling control.
+
+---
+
+## \[1.1.1] - 2025-06-11
 
 ### Fixed
 
@@ -8,7 +18,7 @@
 
 ---
 
-## [1.1.0] - 2025-06-11
+## \[1.1.0] - 2025-06-11
 
 ### Added
 
@@ -25,7 +35,7 @@
 
 ---
 
-## [1.0.0] - 2025-06-01
+## \[1.0.0] - 2025-06-01
 
 * 🎉 Initial release of `react-merge-table`.
 * Automatic merging of identical values using `$` and `~` symbols.

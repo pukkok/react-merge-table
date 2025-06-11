@@ -197,18 +197,30 @@ const rows = [
 
 ---
 
-## 🎨 Styling with `defaultStyle`
+## 🎨 Table Styling
 
-Basic table styles are enabled by default. To disable them:
+`<MergeTable>` applies the following table layout styles by default:
+
+```css
+border-collapse: collapse;
+width: 100%;
+```
+
+It behaves just like a regular `<table>` tag and serves as a lightweight style wrapper.
+
+If you want to disable the default styles on the header (`<TableHeader>`) or body (`<TableBody>`),
+you can use the `defaultStyle={false}` prop on each component:
 
 ```tsx
-<MergeTable defaultStyle={false}>
+<MergeTable>
   <TableHeader headers={headers} defaultStyle={false} />
   <TableBody rows={rows} defaultStyle={false} />
 </MergeTable>
 ```
 
-You can apply your own CSS classes, themes, or utility libraries.
+> 🧩 If you apply custom styles without setting `defaultStyle` to false, your styles will override the default styles in case of conflict.
+
+You can freely customize the appearance using your own CSS classes or utility libraries like Tailwind.
 
 ---
 
