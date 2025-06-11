@@ -1,6 +1,6 @@
 # Changelog
 
-## \[1.1.0] - 2025-06-11
+## [1.1.0] - 2025-06-11
 
 ### Added
 
@@ -17,7 +17,7 @@
 
 ---
 
-## \[1.0.0] - 2025-06-01
+## [1.0.0] - 2025-05-18
 
 * 🎉 Initial release of `react-merge-table`.
 * Automatic merging of identical values using `$` and `~` symbols.
