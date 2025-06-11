@@ -49,7 +49,7 @@ export default function App() {
           className="example-body"
           rows={rows}
           columnRenderers={{
-            0: (cell: Cell) => <strong>{cell.content.label}</strong>,
+            0: (cell) => <th style={{border: '1px solid red'}}><strong>{cell.content.label}</strong></th>,
 
             1: (cell: Cell) =>
               cell.rowIndex === 2
