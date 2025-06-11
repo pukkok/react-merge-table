@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1] - 2025-06-11
+
+### Fixed
+
+* Re-published v1.1.0 due to missing build output. This patch includes the proper `dist/` files.
+
+---
+
 ## [1.1.0] - 2025-06-11
 
 ### Added
@@ -17,7 +25,7 @@
 
 ---
 
-## [1.0.0] - 2025-05-18
+## [1.0.0] - 2025-06-01
 
 * 🎉 Initial release of `react-merge-table`.
 * Automatic merging of identical values using `$` and `~` symbols.
